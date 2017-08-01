@@ -13,6 +13,10 @@ class Formatter extends MY_Controller {
 	
 	public function index(){
 		$this->load->library('ObjectFormatter', '', 'formatter');
+		$params = array(
+			'demo'=>array()
+			);
+
 		$demo = $this->Demo->get(60);
 		if($demo)
 			$params['demo'] = $this->formatter->demo($demo); 
