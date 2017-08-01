@@ -1,0 +1,7 @@
+media/*
+!media/.gitkeep
+application/cache/*
+!application/cache/.htaccess
+!application/cache/index.html
+application/config/database.php
+application/config/production
