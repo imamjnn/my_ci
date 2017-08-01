@@ -15,9 +15,11 @@ $('#images').change(function(){
         success: function(response){
             if(response.status == false){
             	$('#mess').html(response.message);
+                $('#mess').show();
             }else{
             	$('#imagePreview').attr('src', response.message);
             	$('#preview').val(response.message);
+                $('#mess').hide();
             }
         }
     });

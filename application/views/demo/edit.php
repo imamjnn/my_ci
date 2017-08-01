@@ -9,7 +9,7 @@
 		<div class="title-test"><?= $title ?></div>
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-			<i id="mess"></i>
+			<i style="color: red;" id="mess"></i>
 				<form action="<?= base_url('demo/crud/saveData/'.$id) ?>" method="post">
 					<div class="form-group">
 						<label>Name:</label>
@@ -26,7 +26,7 @@
 							<input type="text" value="<?= $id ? $demo->photo :'' ?>" id="preview" name="photo" placeholder="File not selected" class="form-control" readonly>
 							<span class="input-group-btn">
 								<label for="images" type="button" class="btn btn-default">
-									<span class="glyphicon glyphicon-upload"></span>
+									<span class="glyphicon glyphicon-file"></span>
 								</label>
 							</span>
 						</div>
