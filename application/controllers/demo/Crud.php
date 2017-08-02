@@ -13,6 +13,14 @@ class Crud extends MY_Controller {
 	}
 	
 	public function index(){
+<<<<<<< HEAD
+=======
+		$this->load->library('ObjectFormatter', '', 'formatter');
+		$params = array(
+			'demos'=>array()
+			);
+
+>>>>>>> bfa9f100a21bbb92b5ab115def3d8ca9da2c3a9c
 		$demo = $this->Demo->getAll();
 		if($demo)
 			$params['demos'] = $this->formatter->demo($demo); 
