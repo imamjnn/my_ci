@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<?= $page ?>
 	<?php $this->load->view('demo/partial/head') ?>
-	<title><?= $title ?></title>
 </head>
 <body>
 	<div class="container">

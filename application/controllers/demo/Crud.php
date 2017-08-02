@@ -9,10 +9,10 @@ class Crud extends MY_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('Demo_model', 'Demo');
+		$this->load->library('ObjectFormatter', '', 'formatter');
 	}
 	
 	public function index(){
-		$this->load->library('ObjectFormatter', '', 'formatter');
 		$demo = $this->Demo->getAll();
 		if($demo)
 			$params['demos'] = $this->formatter->demo($demo); 
@@ -31,6 +31,9 @@ class Crud extends MY_Controller {
 		$demo = $this->Demo->get($id); 
 		$params['id'] = $id;
 		$params['demo']= $demo;
+
+		$test = $this->formatter->demo($demo);
+		$params['page']= $this->meta->single($test);
 
 		if(!$id){
 			$params['title'] = 'Create New';
