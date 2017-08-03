@@ -27,6 +27,8 @@ class Crud extends MY_Controller {
 	}
 
 	public function edit($id=null){
+		if(!$this->user)
+			return $this->show_404();
 		
 		$params = array(
 			'demo' => null,
@@ -36,9 +38,6 @@ class Crud extends MY_Controller {
 		$demo = $this->Demo->get($id); 
 		$params['id'] = $id;
 		$params['demo']= $demo;
-
-		$test = $this->formatter->demo($demo);
-		$params['page']= $this->meta->single($test);
 
 		if(!$id){
 			$params['title'] = 'Create New';
@@ -51,6 +50,9 @@ class Crud extends MY_Controller {
 	}
 
 	function saveData($id){
+		if(!$this->user)
+			return $this->show_404();
+
 		$data = array(
 			'name' => $this->input->post('name'),
 			'photo' => $this->input->post('photo'),
@@ -67,6 +69,9 @@ class Crud extends MY_Controller {
 	}
 
 	function deleteData($id){
+		if(!$this->user)
+			return $this->show_404();
+		
 		$this->Demo->remove($id);
 		return redirect('demo/crud');
 	}	

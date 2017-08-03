@@ -52,8 +52,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['demo/crud'] = 'demo/crud/index';
 $route['demo/formatter'] = 'demo/formatter/index';
+
+$route['login'] = 'user/index';
+
 $route['media/(:any)/(:any)'] = 'media/resize/$1/$2';
 
-$route['default_controller'] = 'welcome';
+$route['read/(:any)/(:any)'] = 'article/single/$1/$2';
+$route['read/(:any)'] = 'article/single/$1';
+
+$route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<?= $page ?>
 	<?php $this->load->view('demo/partial/head') ?>
 </head>
 <body>
