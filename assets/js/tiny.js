@@ -12,45 +12,36 @@ tinymce.init({
     	'//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
     	'//www.tinymce.com/css/codepen.min.css'],
 
-    image_title: true, 
-    file_browser_callback: function(cb, value, meta) {
-    	var input = document.createElement('input');
-	    input.setAttribute('type', 'file');
-	    input.setAttribute('accept', 'image/*');
-	    input.setAttribute('id', 'images');
-	    
-	    // Note: In modern browsers input[type="file"] is functional without 
-	    // even adding it to the DOM, but that might not be the case in some older
-	    // or quirky browsers like IE, so you might want to add it to the DOM
-	    // just in case, and visually hide it. And do not forget do remove it
-	    // once you do not need it anymore.
+    file_picker_types: 'image',
+    image_title: true,
+    file_picker_callback: function(cb, value, meta) {
+      	var input = document.createElement('input');
+        input.setAttribute('type', 'file');
+        input.setAttribute('accept', 'image/*');
+        input.setAttribute('id', 'images');
 
-	    input.onchange = function() {
-	      	var file = this.files[0];
+
+	      input.onchange = function() {
+	      var file = this.files[0];
 		    var form = new FormData();
 		    form.append('userfile', file);
-		    $.ajax({
-		        url : base_url+'media/uploadFile',
-		        type: "POST",
-		        dataType: "JSON",
-		        cache: false,
-		        contentType: false,
-		        processData: false,
-		        data : form,
-		        success: function(response){
-		            if(response.status == false){
-		            	$('#mess').html(response.message);
-		                $('#mess').show();
-		            }else{
-		            	$('#imagePreview').attr('src', response.message);
-		            	$('#preview').val(response.message);
-		                $('#mess').hide();
-		                cb({ title: response.message});
-		            }
-		        }
-		    });
-	    };
-	    
-	    input.click();
-	}
+    		    $.ajax({
+    		        url : base_url+'media/uploadFile',
+    		        type: "POST",
+    		        dataType: "JSON",
+    		        cache: false,
+    		        contentType: false,
+    		        processData: false,
+    		        data : form,
+    		        success: function(response){
+    		            if(response.status == false){
+    		            	   console.log('error upload');
+    		            }else{
+    		                cb(response.message, { title: file.name });
+    		            }
+    		        }
+    		    });
+	      };
+	      input.click();
+  	}
 });
