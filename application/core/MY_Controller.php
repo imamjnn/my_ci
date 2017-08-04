@@ -11,6 +11,7 @@ class MY_Controller extends CI_Controller {
 		parent::__construct();
 
 		$this->load->library('Theme', '', 'theme');
+		$this->load->library('Param', '', 'param');
 		$this->load->library('ObjectMeta', '', 'meta');
 		$this->load->library('session');
 		$this->load->model('User_model', 'User');

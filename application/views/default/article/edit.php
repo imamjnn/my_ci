@@ -37,18 +37,22 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Tags</label>
+								<label>Category</label>
 								<div class="input-group">
 									<select class="selectpicker">
 										<option>Oke</option>
+										<option>asa</option>
+										<option>Oksdse</option>
+										<option>Okqwqe</option>
 									</select>
 								</div>
 							</div>
 						</div>
 					</div>
-
+					<div class="form-group">
 					<a href="<?= base_url() ?>" class="btn btn-warning">Cancel</a>
 					<button class="btn btn-success pull-right" type="submit">Save</button>
+					</div>
 				</form>
 			</div>
 		</div>	
