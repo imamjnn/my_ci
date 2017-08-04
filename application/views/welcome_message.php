@@ -15,9 +15,6 @@
 			<li>
 				<a href="<?= base_url('demo/crud') ?>">Ex CRUD</a>
 			</li>
-			<li>
-				<a href="<?= base_url('demo/formatter') ?>">Ex Formatter</a>
-			</li>
 		</ul>
 	</div>
 

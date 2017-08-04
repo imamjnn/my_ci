@@ -17,14 +17,7 @@
 				<h1>Welcome</h1>
 				<div class="row">
 					<div class="col-md-8">
-						<div class="form-group">
-							<label>Title:</label>
-							<input class="form-control" type="text" value="" name="title">
-						</div>
-						<div class="form-group">
-							<label>Content:</label>
-							<textarea class="form-control" type="text" name="content"></textarea>
-						</div>
+						Here content!
 					</div>
 				</div>
 			</div>

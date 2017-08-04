@@ -15,9 +15,6 @@
 			<li>
 				<a href="<?= base_url('demo/crud') ?>">Ex CRUD</a>
 			</li>
-			<li>
-				<a href="<?= base_url('demo/formatter') ?>">Ex Formatter</a>
-			</li>
 		</ul>
 
 		<p>My Article: <?php if($this->user): ?>[<a href="<?= base_url('article/edit/0') ?>">Create new</a>]<?php endif; ?></p>
