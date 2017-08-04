@@ -52,8 +52,7 @@
 			var Id = $(this).attr('data-id');
 
 			$.ajax({
-				url: '<?= base_url('
-				admin / home / edit / ') ?>' + Id,
+				url: '<?= base_url('admin/adm_home/edit/') ?>' + Id,
 				cache: false,
 				beforeSend: function() {
 					$("#param-content").html("Please wait....");

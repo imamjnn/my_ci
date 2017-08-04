@@ -4,7 +4,7 @@
         <?= $param->name ?>
     </h4>
 </div>
-<form action="<?= base_url('admin/home/saveEdit') ?>" method="post">
+<form action="<?= base_url('admin/adm_home/saveEdit') ?>" method="post">
 	<div class="modal-body">
         <div class="form-group">
             <input type="hidden" name="id" value="<?= $param->id ?>">
