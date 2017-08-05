@@ -25,7 +25,7 @@
         					</div>
         					<div class="form-group">
         						<label>Content:</label>
-        						<textarea class="form-control" type="text" name="content"><?= $id ? $article->content :'' ?></textarea>
+        						<textarea class="form-control tinymce" type="text" name="content"><?= $id ? $article->content :'' ?></textarea>
         					</div>
 					</div>
                     <div class="col-md-4">
@@ -66,8 +66,5 @@
 
 
 	<?php $this->load->view('admin/partial/foot') ?>
-	<script src="<?= $this->theme->asset('vendor/tinymce/tinymce.min.js') ?>"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
-	<script src="<?= $this->theme->asset('js/tiny.js') ?>"></script>
 </body>
 </html>

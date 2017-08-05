@@ -5,6 +5,9 @@ class Adm_home extends MY_Controller {
 
 
 	public function index(){
+		if(!$this->user)
+			return redirect('login');
+
 		$this->load->model('Article_model', 'Article');
 		$this->load->library('ObjectFormatter', '', 'formatter');
 
@@ -21,6 +24,9 @@ class Adm_home extends MY_Controller {
 	}
 
 	public function setting(){
+		if(!$this->user)
+			return redirect('login');
+
 		$this->load->model('Siteparams_model', 'Param');
 
 		$params = array(
@@ -34,6 +40,9 @@ class Adm_home extends MY_Controller {
 	}
 
 	function edit($id){
+		if(!$this->user)
+			return redirect('login');
+
 		$this->load->model('Siteparams_model', 'Param');
 
 		$params['param'] = $this->Param->get($id);
@@ -42,6 +51,9 @@ class Adm_home extends MY_Controller {
 	}
 
 	function saveEdit(){
+		if(!$this->user)
+			return $this->show_404();
+
 		$this->load->model('Siteparams_model', 'Param');
 
 		$id = $this->input->post('id');

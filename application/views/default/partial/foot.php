@@ -3,3 +3,4 @@
 
 <!-- custom -->
 <script src="<?= $this->theme->asset('js/jnn.js') ?>"></script>
+<script src="<?= $this->theme->asset('vendor/prism.js') ?>"></script>

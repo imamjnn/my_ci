@@ -10,6 +10,9 @@ class Adm_article extends MY_Controller {
 	}
 
 	public function index(){
+        if(!$this->user)
+			return redirect('login');
+
 		$params = array(
 			'articles' => array()
 			);
@@ -23,8 +26,8 @@ class Adm_article extends MY_Controller {
 	}
 
     public function edit($id){
-		if(!$this->user)
-			return $this->show_404();
+        if(!$this->user)
+			return redirect('login');
 
 		$params = array(
 			'article' => null,
@@ -46,7 +49,7 @@ class Adm_article extends MY_Controller {
 	}
 
     function save($id){
-		if(!$this->user)
+        if(!$this->user)
 			return $this->show_404();
 
 		$title = $this->input->post('title');

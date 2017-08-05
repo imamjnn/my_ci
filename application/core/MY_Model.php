@@ -2,12 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
-* 
+*
 */
 class MY_Model extends CI_Model {
 
 	var $table= '';
-	
+
 	function __construct(){
         $this->load->database();
         parent::__construct();
@@ -30,6 +30,16 @@ class MY_Model extends CI_Model {
     }
 
     public function getAll(){
+        $query = $this->db->get($this->table);
+
+        if(!$query->num_rows())
+            return false;
+        return $query->result();
+    }
+
+	public function getLike($like, $limit){
+		$this->db->like($like);
+		$this->db->limit($limit);
         $query = $this->db->get($this->table);
 
         if(!$query->num_rows())

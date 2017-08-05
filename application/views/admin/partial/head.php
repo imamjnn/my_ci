@@ -5,3 +5,4 @@
 <link href="<?= $this->theme->asset('admin/css/navbar-fixed-side.css') ?>" rel="stylesheet">
 <link href="<?= $this->theme->asset('admin/css/bootstrap-flat.min.css') ?>" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="<?= $this->theme->asset('admin/css/ajax-bootstrap-select.css') ?>">

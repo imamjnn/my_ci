@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title><?= $article->title ?></title>
-	<?php $this->load->view('demo/partial/head') ?>
+	<?php $this->load->view('default/partial/head') ?>
 </head>
 <body>
 	<div class="col-md-8 col-md-offset-2">
@@ -15,6 +15,6 @@
 		</div>
 		<center><a href="<?= base_url() ?>">Home</a></center>
 	</div>
-<?php $this->load->view('demo/partial/foot') ?>
+<?php $this->load->view('default/partial/foot') ?>
 </body>
 </html>
