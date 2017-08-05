@@ -22,25 +22,28 @@
 
 				<div class="row">
 					<div class="col-md-4">
+						<form method="get">
 						<div class="form-group">
 							<input type="text" name="title" class="form-control" placeholder="Find articles">
 						</div>
 						<div class="form-group">
 							<div class="input-group">
-								<select class="selectpicker" id="cat-art">
+								<select name="category" class="selectpicker" id="cat-art">
 								</select>
                             </div>
 						</div>
 						<div class="form-group">
 							<div class="input-group">
-                                <select class="selectpicker" data-live-search="true">
-									<option>User</option>
+                                <select name="status" class="selectpicker" data-live-search="true">
+									<option value="1">Draft</option>
+									<option value="2">Publish</option>
                                 </select>
                             </div>
 						</div>
 						<div class="form-group">
-							<a href="#" class="btn btn-primary pull-right">Filter</a>
+							<button class="btn btn-primary pull-right">Filter</button>
 						</div>
+						</form>
 					</div>
 					<div class="col-md-8">
 						<table class="table table-hover table-striped">

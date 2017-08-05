@@ -20,7 +20,13 @@ class Adm_article extends MY_Controller {
 		$article = $this->Article->getAll();
 		if($article)
 			$params['articles'] = $this->formatter->article($article);
-		//deb($params);
+
+        $title = $this->input->get('title');
+        $status = $this->input->get('status');
+        $coba = $this->Article->findByCond($title, $status);
+        if($coba)
+            $params['articles'] = $this->formatter->article($coba);
+		//deb($coba);
 
 		$this->load->view('admin/article/index', $params);
 	}
