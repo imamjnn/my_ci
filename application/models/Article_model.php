@@ -15,7 +15,7 @@ class Article_model extends MY_Model {
 		if($title != '')
 			$this->db->like('title', $title);
 		if($category != '')
-			$this->db->like('category', $category);
+			$this->db->where('category', $category);
         $query = $this->db->get($this->table, $limit, $offset);
 
         if(!$query->num_rows())
@@ -23,7 +23,9 @@ class Article_model extends MY_Model {
         return $query->result();
 	}
 
-	function getTotal(){
+	function getTotal($title){
+		if($title)
+			$this->db->like($title);
 		$query = $this->db->get($this->table);
 		return $query->num_rows();
 	}
