@@ -24,7 +24,7 @@
 					<div class="col-md-4">
 						<form method="get">
 						<div class="form-group">
-							<input type="text" name="title" class="form-control" placeholder="Find articles">
+							<input type="text" name="title" class="form-control" placeholder="Find articles" value="<?= $this->input->get('title') ?>">
 						</div>
 						<div class="form-group">
 							<div class="input-group">
@@ -32,16 +32,9 @@
 								</select>
                             </div>
 						</div>
-						<div class="form-group">
-							<div class="input-group">
-                                <select name="status" class="selectpicker" data-live-search="true">
-									<option value="1">Draft</option>
-									<option value="2">Publish</option>
-                                </select>
-                            </div>
-						</div>
-						<div class="form-group">
-							<button class="btn btn-primary pull-right">Filter</button>
+						<div class="form-group pull-right">
+							<a href="<?= base_url('admin/article') ?>" class="btn btn-default">Reset</a>
+							<button class="btn btn-primary">Filter</button>
 						</div>
 						</form>
 					</div>
@@ -68,43 +61,5 @@
 		</div>
 	</div>
     <?php $this->load->view('admin/partial/foot') ?>
-	<script>
-		$('#cat-art').selectpicker({
-			liveSearch: true
-		})
-		.ajaxSelectPicker({
-	        ajax: {
-	            url: 'http://myci.dev/api/filter/catarticle',
-	            data: function () {
-					var el = this.plugin.$element;
-	                var params = {
-	                    name: '{{{q}}}'
-	                };
-
-	                return params;
-	            },
-				method: 'get'
-	        },
-	        locale: {
-	            emptyTitle: 'Search for category...'
-	        },
-	        preprocessData: function(data){
-				if(data.error)
-                    return [];
-
-				data = data.data;
-                var result = [];
-                for(var i=0; i<data.length; i++){
-                    result.push({
-                        value: data[i].id,
-                        text: data[i].name,
-                        disabled: false
-                    });
-                }
-
-                return result;
-	        }
-	    });
-	</script>
 </body>
 </html>

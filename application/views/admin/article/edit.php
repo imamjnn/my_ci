@@ -16,9 +16,9 @@
 			<div class="col-sm-9 col-lg-10">
 				<h1>Article</h1>
 				<div class="row">
+					<form action="<?= base_url('admin/article/save/'.$id) ?>" method="post">
 					<div class="col-md-8">
                         <i style="color: red;" id="mess"></i>
-                        <form action="<?= base_url('admin/article/save/'.$id) ?>" method="post">
         					<div class="form-group">
         						<label>Title:</label>
         						<input class="form-control" type="text" value="<?= $id ? $article->title :'' ?>" name="title" required>
@@ -45,12 +45,17 @@
                         <div class="form-group">
                             <label>Category</label>
                             <div class="input-group">
-                                <select class="selectpicker">
-                                    <option>Oke</option>
-                                    <option>asa</option>
-                                    <option>Oksdse</option>
-                                    <option>Okqwqe</option>
-                                </select>
+								<select name="category" class="selectpicker" id="cat-art">
+								</select>
+                            </div>
+                        </div>
+						<div class="form-group">
+                            <label>Status</label>
+                            <div class="input-group">
+								<select name="status" class="selectpicker">
+									<option value="1">Draft</option>
+									<option value="2">Publish</option>
+								</select>
                             </div>
                         </div>
                         <div class="form-group">

@@ -4,5 +4,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 <script src="<?= $this->theme->asset('admin/js/ajax-bootstrap-select.js') ?>"></script>
 
+<!-- custom -->
 <script src="<?= $this->theme->asset('admin/js/tiny.js') ?>"></script>
-<script src="<?= $this->theme->asset('js/jnn.js') ?>"></script>
+<script src="<?= $this->theme->asset('admin/js/jnn.js') ?>"></script>
+<script src="<?= $this->theme->asset('admin/js/filter.js') ?>"></script>

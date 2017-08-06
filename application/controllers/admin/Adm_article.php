@@ -14,19 +14,19 @@ class Adm_article extends MY_Controller {
 			return redirect('login');
 
 		$params = array(
-			'articles' => array()
+			'articles' => []
 			);
 
-		$article = $this->Article->getAll();
-		if($article)
-			$params['articles'] = $this->formatter->article($article);
+
 
         $title = $this->input->get('title');
-        $status = $this->input->get('status');
-        $coba = $this->Article->findByCond($title, $status);
-        if($coba)
-            $params['articles'] = $this->formatter->article($coba);
-		//deb($coba);
+        $category = $this->input->get('category');
+        $article = $this->Article->findByCond($title, $category);
+        if($article)
+            $params['articles'] = $this->formatter->article($article);
+
+
+		//deb($params);
 
 		$this->load->view('admin/article/index', $params);
 	}
@@ -66,6 +66,8 @@ class Adm_article extends MY_Controller {
 			'slug' => $slug,
 			'content' => $this->input->post('content'),
 			'cover' => $this->input->post('cover'),
+            'category' => $this->input->post('category'),
+            'status' => $this->input->post('status'),
             'updated' => date('Y-m-d H:i:s')
 			);
 

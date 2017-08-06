@@ -11,9 +11,11 @@ class Article_model extends MY_Model {
         $this->table = 'article';
     }
 
-	function findByCond($title, $status){
-		$this->db->like('title', $title);
-		$this->db->like('status', $status);
+	function findByCond($title, $category){
+		if($title != '')
+			$this->db->like('title', $title);
+		if($category != '')	
+			$this->db->like('category', $category);
         $query = $this->db->get($this->table);
 
         if(!$query->num_rows())
