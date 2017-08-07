@@ -6,6 +6,7 @@ class Adm_article extends MY_Controller {
     function __construct(){
 		parent::__construct();
 		$this->load->model('Article_model', 'Article');
+        $this->load->model('Articlecategory_model', 'ACategory');
 		$this->load->library('ObjectFormatter', '', 'formatter');
 	}
 
@@ -22,10 +23,12 @@ class Adm_article extends MY_Controller {
         $category = $this->input->get('category');
 
         if(!$page)
-            $page = 1;
+            $page = 0;
+
         $cond = array(
-            'category'=>$category,
-            'title' => $title
+            'title' => $title,
+            'category'=>$category
+
             );
 
 		$this->load->library('pagination');
@@ -34,17 +37,19 @@ class Adm_article extends MY_Controller {
             $config['base_url'] = base_url('admin/article');
         }else{
             $config['total_rows'] = $this->Article->getTotal($cond);
-            $config['base_url'] = base_url('admin/article?category='.$category.'&title='.$title);
+            $config['base_url'] = base_url('admin/article?title='.$title.'&category='.$category);
         }
         $config['page_query_string'] = TRUE;
         $config['query_string_segment'] = 'page';
         $config['uri_segment'] = $page;
-		$config['per_page'] = 5;
+		$config['per_page'] = 10;
 		$this->pagination->initialize($config);
 
         $article = $this->Article->findByCond($title, $category, $config['per_page'], $page);
         if($article)
             $params['articles'] = $this->formatter->article($article);
+
+        $params['category'] = $this->ACategory->getAll();
 		//deb($article);
 
 		$this->load->view('admin/article/index', $params);
@@ -62,6 +67,7 @@ class Adm_article extends MY_Controller {
 		$article = $this->Article->get($id);
 		$params['id'] = $id;
 		$params['article']= $article;
+        $params['category'] = $this->ACategory->getAll();
 
 		if(!$id){
 			$params['title'] = 'Create New';

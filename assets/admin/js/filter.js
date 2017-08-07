@@ -1,12 +1,12 @@
 var base_url = window.location.protocol + "//" + window.location.host + "/";
 
 //filter category
-$('#cat-art').selectpicker({
+$('#tag-art').selectpicker({
     liveSearch: true
 })
 .ajaxSelectPicker({
     ajax: {
-        url: base_url+'api/filter/catarticle',
+        url: base_url+'api/filter/tagarticle',
         data: function () {
             var el = this.plugin.$element;
             var params = {
@@ -18,7 +18,7 @@ $('#cat-art').selectpicker({
         method: 'get'
     },
     locale: {
-        emptyTitle: 'Search for category...'
+        emptyTitle: 'Search for tags...'
     },
     preprocessData: function(data){
         if(data.error)

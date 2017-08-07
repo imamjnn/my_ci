@@ -28,7 +28,19 @@
 						</div>
 						<div class="form-group">
 							<div class="input-group">
-								<select name="category" class="selectpicker" id="cat-art">
+								<select name="category" class="selectpicker">
+									<option value="">--Category--</option>
+									<?php if($category): ?>
+									<?php foreach($category as $cat): ?>
+									<option value="<?= $cat->id ?>"><?= $cat->name ?></option>
+									<?php endforeach; ?>
+									<?php endif; ?>
+								</select>
+                            </div>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<select name="tag" class="selectpicker" id="tag-art">
 								</select>
                             </div>
 						</div>
@@ -46,7 +58,15 @@
 								<tr>
 									<td>
 										<b><?= $art->title ?></b>
-										<a href="<?= base_url('admin/article/edit/'.$art->id) ?>" class="btn btn-xs btn-default pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
+										<div class="pull-right">
+											<a href="<?= base_url('admin/article/edit/'.$art->id) ?>" class="btn btn-xs btn-default pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
+											<?php if($art->status == 1): ?>
+											<span class="label label-warning">draft</span>
+											<?php else: ?>
+											<a href="<?= base_url($art->page) ?>" target="_blank" class="btn btn-xs btn-default pull-right"><span class="glyphicon glyphicon-new-window"></span></a>
+											<?php endif; ?>
+										</div>
+
 										<p><?= base_url($art->page) ?></p>
 									</td>
 								</tr>
@@ -54,7 +74,9 @@
 								<?php endif; ?>
 							</tbody>
 						</table>
-						<?= $this->pagination->create_links() ?>
+						<div class="pull-right">
+							<?= $this->pagination->create_links() ?>
+						</div>
 					</div>
 				</div>
 			</div>

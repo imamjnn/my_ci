@@ -12,9 +12,9 @@ class Article_model extends MY_Model {
     }
 
 	function findByCond($title, $category, $limit, $offset){
-		if($title != '')
+		if($title)
 			$this->db->like('title', $title);
-		if($category != '')
+		if($category)
 			$this->db->where('category', $category);
         $query = $this->db->get($this->table, $limit, $offset);
 
@@ -26,6 +26,7 @@ class Article_model extends MY_Model {
 	function getTotal($title){
 		if($title)
 			$this->db->like($title);
+
 		$query = $this->db->get($this->table);
 		return $query->num_rows();
 	}

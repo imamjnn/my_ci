@@ -6,6 +6,7 @@ CREATE TABLE `article` (
   `slug` varchar(150) DEFAULT NULL,
   `content` text,
   `cover` varchar(100) DEFAULT NULL,
+  `category` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT 1,
   `updated` datetime DEFAULT NULL,
   `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP
@@ -13,6 +14,15 @@ CREATE TABLE `article` (
 
 DROP TABLE IF EXISTS `article_category`;
 CREATE TABLE `article_category` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(100) DEFAULT NULL,
+  `slug` varchar(100) DEFAULT NULL,
+  `description` text,
+  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+DROP TABLE IF EXISTS `article_tag`;
+CREATE TABLE `article_tag` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name` varchar(100) DEFAULT NULL,
   `slug` varchar(100) DEFAULT NULL,

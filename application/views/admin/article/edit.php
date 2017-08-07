@@ -42,10 +42,23 @@
                             </div>
                             <img src="<?= $id ? $article->cover :'' ?>" id="imagePreview" width="100%"/>
                         </div>
+						<div class="form-group">
+							<label>Category</label>
+							<div class="input-group">
+								<select name="category" class="selectpicker">
+									<option value="">--Category--</option>
+									<?php if($category): ?>
+									<?php foreach($category as $cat): ?>
+									<option value="<?= $cat->id ?>" <?= ($cat->id == $article->category ? 'selected':'') ?>><?= $cat->name ?></option>
+									<?php endforeach; ?>
+									<?php endif; ?>
+								</select>
+                            </div>
+						</div>
                         <div class="form-group">
-                            <label>Category</label>
+                            <label>Tag</label>
                             <div class="input-group">
-								<select name="category" class="selectpicker" id="cat-art">
+								<select name="tag" class="selectpicker" id="tag-art">
 								</select>
                             </div>
                         </div>
@@ -68,8 +81,6 @@
 			</div>
 		</div>
 	</div>
-
-
 	<?php $this->load->view('admin/partial/foot') ?>
 </body>
 </html>
