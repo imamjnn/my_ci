@@ -58,7 +58,7 @@
                         <div class="form-group">
                             <label>Tag</label>
                             <div class="input-group">
-								<select name="tag" class="selectpicker" id="tag-art">
+								<select name="tag[]" class="selectpicker" multiple id="tag-art">
 								</select>
                             </div>
                         </div>

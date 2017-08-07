@@ -7,6 +7,8 @@ class Adm_article extends MY_Controller {
 		parent::__construct();
 		$this->load->model('Article_model', 'Article');
         $this->load->model('Articlecategory_model', 'ACategory');
+        $this->load->model('Articletag_model', 'ATag');
+        $this->load->model('Articletagchain_model', 'ATChain');
 		$this->load->library('ObjectFormatter', '', 'formatter');
 	}
 
@@ -97,7 +99,16 @@ class Adm_article extends MY_Controller {
 			);
 
 		if(!$id){
-			$this->Article->create($data);
+			$article_id = $this->Article->create($data);
+            $tag = $this->input->post('tag');
+            $hasil = array();
+            foreach ($tag as $key => $value) {
+                $hasil[] = array(
+                    'article_tag'=>$value,
+                    'article' => $article_id
+                    );
+            }
+            $this->ATChain->createBatch($hasil);
 		}else{
 			$this->Article->setByCond(['id'=>$id], $data);
 		}

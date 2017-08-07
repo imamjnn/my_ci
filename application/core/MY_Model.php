@@ -53,6 +53,12 @@ class MY_Model extends CI_Model {
         return false;
     }
 
+	public function createBatch($row){
+        if($this->db->insert_batch($this->table, $row))
+            return $this->db->insert_id();
+        return false;
+    }
+
     public function setByCond($cond, $data){
         $this->db->where($cond);
         return $this->db->update($this->table, $data);

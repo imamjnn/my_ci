@@ -30,6 +30,14 @@ CREATE TABLE `article_tag` (
   `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+DROP TABLE IF EXISTS `article_tag_chain`;
+CREATE TABLE `article_tag_chain` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `article` int(11) DEFAULT NULL,
+  `article_tag` int(11) DEFAULT NULL,
+  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 DROP TABLE IF EXISTS `demo`;
 CREATE TABLE `demo` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
