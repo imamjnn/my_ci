@@ -70,6 +70,13 @@ class Adm_article extends MY_Controller {
 		$params['id'] = $id;
 		$params['article']= $article;
         $params['category'] = $this->ACategory->getAll();
+        $params['tags'] = $this->ATag->getAll();
+        $tags = $this->ATag->getJoin(['article'=>$id]);
+        $tag_in = array();
+        foreach($tags as $tag){
+            $tag_in[$tag->article_tag] = $tag->article_tag;
+        }
+        $params['tag_in'] = $tag_in;
 
 		if(!$id){
 			$params['title'] = 'Create New';
@@ -111,6 +118,16 @@ class Adm_article extends MY_Controller {
             $this->ATChain->createBatch($hasil);
 		}else{
 			$this->Article->setByCond(['id'=>$id], $data);
+            $this->ATChain->removeByCond(['article'=>$id]);
+            $tag = $this->input->post('tag');
+            $hasil = array();
+            foreach ($tag as $key => $value) {
+                $hasil[] = array(
+                    'article_tag'=>$value,
+                    'article' => $id
+                    );
+            }
+            $this->ATChain->createBatch($hasil);
 		}
 
 		return redirect('admin/article');

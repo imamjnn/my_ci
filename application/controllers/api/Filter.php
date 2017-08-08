@@ -23,7 +23,7 @@ class Filter extends REST_Controller
         $this->response($cat, 200);
     }
 
-	// show data article category
+	// show data article tag
     function tagArticle_get() {
     	$this->load->model('Articletag_model', 'ATag');
     	$tag['data'] = $this->ATag->getAll();

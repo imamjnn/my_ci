@@ -3,6 +3,7 @@
 <head>
 	<title>Edit Article</title>
 	<?php $this->load->view('admin/partial/head') ?>
+	<link rel="stylesheet" href="<?= $this->theme->asset('admin/css/bootstrap-chosen.css') ?>">
 </head>
 <body>
     <div class="container-fluid">
@@ -19,14 +20,14 @@
 					<form action="<?= base_url('admin/article/save/'.$id) ?>" method="post">
 					<div class="col-md-8">
                         <i style="color: red;" id="mess"></i>
-        					<div class="form-group">
-        						<label>Title:</label>
-        						<input class="form-control" type="text" value="<?= $id ? $article->title :'' ?>" name="title" required>
-        					</div>
-        					<div class="form-group">
-        						<label>Content:</label>
-        						<textarea class="form-control tinymce" type="text" name="content"><?= $id ? $article->content :'' ?></textarea>
-        					</div>
+    					<div class="form-group">
+    						<label>Title:</label>
+    						<input class="form-control" type="text" value="<?= $id ? $article->title :'' ?>" name="title" required>
+    					</div>
+    					<div class="form-group">
+    						<label>Content:</label>
+    						<textarea class="form-control tinymce" type="text" name="content"><?= $id ? $article->content :'' ?></textarea>
+    					</div>
 					</div>
                     <div class="col-md-4">
                         <div class="form-group">
@@ -55,13 +56,23 @@
 								</select>
                             </div>
 						</div>
-                        <div class="form-group">
+						<div class="form-group">
+							<label>Tag:</label>
+							<select name="tag[]" data-placeholder="Choose a Tags" class="chosen-select form-control" multiple tabindex="4">
+								<?php if($tags): ?>
+								<?php foreach($tags as $tag): ?>
+								<option value="<?= $tag->id ?>" <?= in_array($tag->id, $tag_in) ? 'selected' : '' ?>><?= $tag->name ?></option>
+								<?php endforeach; ?>
+								<?php endif; ?>
+							</select>
+						</div>
+                        <!--<div class="form-group">
                             <label>Tag</label>
                             <div class="input-group">
 								<select name="tag[]" class="selectpicker" multiple id="tag-art">
 								</select>
                             </div>
-                        </div>
+                        </div>-->
 						<div class="form-group">
                             <label>Status</label>
                             <div class="input-group">
@@ -71,6 +82,7 @@
 								</select>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <a href="<?= base_url('admin/article') ?>" class="btn btn-warning">Cancel</a>
                             <button class="btn btn-success pull-right" type="submit">Save</button>
@@ -82,5 +94,12 @@
 		</div>
 	</div>
 	<?php $this->load->view('admin/partial/foot') ?>
+	<script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
+        <script>
+          $(function() {
+            $('.chosen-select').chosen();
+            $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
+          });
+        </script>
 </body>
 </html>
