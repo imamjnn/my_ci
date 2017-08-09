@@ -62,7 +62,10 @@ class Adm_article extends MY_Controller {
 			return redirect('login');
 
 		$params = array(
-			'article' => null,
+			'article' => [],
+            'category' => array(),
+            'tags' => null,
+            'tag_in' => null,
 			'error' => ''
 			);
 
@@ -121,13 +124,17 @@ class Adm_article extends MY_Controller {
             $this->ATChain->removeByCond(['article'=>$id]);
             $tag = $this->input->post('tag');
             $hasil = array();
-            foreach ($tag as $key => $value) {
-                $hasil[] = array(
-                    'article_tag'=>$value,
-                    'article' => $id
-                    );
+            if($tag){
+                foreach ($tag as $key => $value) {
+                    $hasil[] = array(
+                        'article_tag'=>$value,
+                        'article' => $id
+                        );
+                }
+                $this->ATChain->createBatch($hasil);
             }
-            $this->ATChain->createBatch($hasil);
+                
+
 		}
 
 		return redirect('admin/article');

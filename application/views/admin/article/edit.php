@@ -3,7 +3,7 @@
 <head>
 	<title>Edit Article</title>
 	<?php $this->load->view('admin/partial/head') ?>
-	<link rel="stylesheet" href="<?= $this->theme->asset('admin/css/bootstrap-chosen.css') ?>">
+	<link rel="stylesheet" type="text/css" href="<?= $this->theme->asset('admin/css/tokenize2.css') ?>">
 </head>
 <body>
     <div class="container-fluid">
@@ -58,14 +58,14 @@
 						</div>
 						<div class="form-group">
 							<label>Tag:</label>
-							<select name="tag[]" data-placeholder="Choose a Tags" class="chosen-select form-control" multiple tabindex="4">
-								<?php if($tags): ?>
+			                <select name="tag[]" class="tokenize-callable-demo1" multiple>
+			                	<?php if($tags): ?>
 								<?php foreach($tags as $tag): ?>
 								<option value="<?= $tag->id ?>" <?= in_array($tag->id, $tag_in) ? 'selected' : '' ?>><?= $tag->name ?></option>
 								<?php endforeach; ?>
 								<?php endif; ?>
-							</select>
-						</div>
+			                </select>
+			            </div>
                         <!--<div class="form-group">
                             <label>Tag</label>
                             <div class="input-group">
@@ -94,12 +94,27 @@
 		</div>
 	</div>
 	<?php $this->load->view('admin/partial/foot') ?>
-	<script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
-        <script>
-          $(function() {
-            $('.chosen-select').chosen();
-            $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
-          });
-        </script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="<?= $this->theme->asset('admin/js/tokenize2.js') ?>"></script>
+	<script>
+		$('.tokenize-callable-demo1').tokenize2({
+			sortable: true,
+			placeholder: 'Choose tag..',
+            dataSource: function(search, object){
+                $.ajax('http://myci.dev/api/filter/tagarticle', {
+                    data: { name: search },
+                    dataType: 'json',
+                    success: function(data){
+                        var $items = [];
+                        data = data.data;
+                        $.each(data, function(k, v){
+                            $items.push(v);
+                        });
+                        object.trigger('tokenize:dropdown:fill', [$items]);
+                    }
+                });
+            }
+        });
+	</script>
 </body>
 </html>

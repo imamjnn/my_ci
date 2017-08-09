@@ -2,6 +2,7 @@
 <html>
 <head>
 	<?php $this->load->view('demo/partial/head') ?>
+	<link rel="stylesheet" type="text/css" href="<?= $this->theme->asset('css/tokenize2.css') ?>">
 </head>
 <body>
 	<div class="container">
@@ -18,6 +19,12 @@
 						<label>Description:</label>
 						<input class="form-control" type="text" value="<?= $id ? $demo->description :'' ?>" name="description">
 					</div>
+
+					<div class="form-group">
+						<label>Tag:</label>
+		                <select class="tokenize-callable-demo1" multiple></select>
+		            </div>
+
 					<div class="form-group">
 						<label>Photo</label>
 						<div class="input-group">
@@ -39,6 +46,25 @@
 	</div>	
 
 	<?php $this->load->view('demo/partial/foot') ?>	
+	<script src="<?= $this->theme->asset('js/tokenize2.js') ?>"></script>
+	<script>
+		$('.tokenize-callable-demo1').tokenize2({
+            dataSource: function(search, object){
+                $.ajax('http://myci.dev/api/filter/tagarticle', {
+                    data: { name: search },
+                    dataType: 'json',
+                    success: function(data){
+                        var $items = [];
+                        data = data.data;
+                        $.each(data, function(k, v){
+                            $items.push(v);
+                        });
+                        object.trigger('tokenize:dropdown:fill', [$items]);
+                    }
+                });
+            }
+        });
+	</script>
 	
 </body>
 </html>
