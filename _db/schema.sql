@@ -18,6 +18,7 @@ CREATE TABLE `article_category` (
   `name` varchar(100) DEFAULT NULL,
   `slug` varchar(100) DEFAULT NULL,
   `description` text,
+  `parent` int(11) DEFAULT NULL,
   `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 );
 

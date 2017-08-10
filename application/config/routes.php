@@ -57,6 +57,10 @@ $route['admin/article'] = 'admin/adm_article/index';
 $route['admin/article/edit/(:num)'] = 'admin/adm_article/edit/$1';
 $route['admin/article/save/(:num)'] = 'admin/adm_article/save/$1';
 
+$route['admin/article/category'] = 'admin/adm_article_cat/index';
+$route['admin/article/category/edit/(:num)'] = 'admin/adm_article_cat/edit/$1';
+$route['admin/article/category/save/(:num)'] = 'admin/adm_article_cat/save/$1';
+
 $route['demo/crud'] = 'demo/crud/index';
 
 $route['login'] = 'user/index';

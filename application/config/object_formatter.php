@@ -14,5 +14,12 @@ $config['object_formatter'] = array(
         'content' => 'text',
         'avatar' => 'media',
         'created' => 'date'
+    ),
+
+    'category' => array(
+        'page' => 'join(/tag/|$slug)',
+        'name' => 'text',
+        'description' => 'text',
+        'created' => 'date'
     )
 );
