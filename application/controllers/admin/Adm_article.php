@@ -70,10 +70,12 @@ class Adm_article extends MY_Controller {
 			);
 
 		$article = $this->Article->get($id);
+        
 		$params['id'] = $id;
 		$params['article']= $article;
         $params['category'] = $this->ACategory->getAll();
         $params['tags'] = $this->ATag->getAll();
+
         $tags = $this->ATag->getJoin(['article'=>$id]);
         $tag_in = array();
         foreach($tags as $tag){
@@ -84,7 +86,7 @@ class Adm_article extends MY_Controller {
 		if(!$id){
 			$params['title'] = 'Create New';
 		}else{
-			$params['title'] = 'Edit Data';
+			$params['title'] = 'Edit Article';
 		}
 
 		//deb($params);

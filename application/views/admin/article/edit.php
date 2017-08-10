@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Edit Article</title>
+	<title><?= $title ?></title>
 	<?php $this->load->view('admin/partial/head') ?>
 	<link rel="stylesheet" type="text/css" href="<?= $this->theme->asset('admin/css/tokenize2.css') ?>">
 </head>
@@ -15,7 +15,7 @@
 				</nav>
 			</div>
 			<div class="col-sm-9 col-lg-10">
-				<h1>Article</h1>
+				<h1><?= $title ?></h1>
 				<div class="row">
 					<form action="<?= base_url('admin/article/save/'.$id) ?>" method="post">
 					<div class="col-md-8">
@@ -31,7 +31,7 @@
 					</div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label>Cover?</label>
+                            <label>Cover:</label>
                             <div class="input-group">
                                 <input id="images" name="userfile" type="file" style="display:none">
                                 <input type="text" value="<?= $id ? $article->cover :'' ?>" id="preview" name="cover" placeholder="File not selected" class="form-control" readonly>
@@ -44,13 +44,12 @@
                             <img src="<?= $id ? $article->cover :'' ?>" id="imagePreview" width="100%"/>
                         </div>
 						<div class="form-group">
-							<label>Category</label>
+							<label>Category:</label>
 							<div class="input-group">
-								<select name="category" class="selectpicker">
-									<option value="">--Category--</option>
+								<select name="category" class="selectpicker" title="Category">
 									<?php if($category): ?>
 									<?php foreach($category as $cat): ?>
-									<option value="<?= $cat->id ?>" <?= ($cat->id == $article->category ? 'selected':'') ?>><?= $cat->name ?></option>
+									<option value="<?= $cat->id ?>" <?= $id ? ($cat->id != $article->category ? 'selected':'') : '' ?>><?= $cat->name ?></option>
 									<?php endforeach; ?>
 									<?php endif; ?>
 								</select>
@@ -74,7 +73,7 @@
                             </div>
                         </div>-->
 						<div class="form-group">
-                            <label>Status</label>
+                            <label>Status:</label>
                             <div class="input-group">
 								<select name="status" class="selectpicker">
 									<option value="1">Draft</option>
