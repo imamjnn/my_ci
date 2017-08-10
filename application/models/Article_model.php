@@ -16,6 +16,7 @@ class Article_model extends MY_Model {
 			$this->db->like('title', $title);
 		if($category)
 			$this->db->where('category', $category);
+		$this->db->order_by('updated', 'DESC');
         $query = $this->db->get($this->table, $limit, $offset);
 
         if(!$query->num_rows())

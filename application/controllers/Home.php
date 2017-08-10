@@ -12,7 +12,7 @@ class Home extends MY_Controller {
 			'articles' => array()
 			);
 
-		$article = $this->Article->getAll();
+		$article = $this->Article->getByCond(['status'=>2], 10);
 		if($article)
 			$params['articles'] = $this->formatter->article($article);
 		//deb($params);

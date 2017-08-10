@@ -13,13 +13,27 @@ class MY_Model extends CI_Model {
         parent::__construct();
     }
 
+    private function _implementOrder($order){
+        if(is_string($order))
+            $order = [$order=>'DESC'];
+        
+        $table = $this->table;
+        foreach($order as $field => $ord){
+            if(strstr($table, '.') !== false)
+                $field = "`$table`.`$field`";
+            $this->db->order_by($field, $ord);
+        }
+        return $this;
+    }
+
     public function get($id, $limit=1){
     	return $this->getByCond(['id'=>$id], $limit);
     }
 
-    public function getByCond($cond, $limit){
+    public function getByCond($cond, $limit, $order=['id'=>'DESC']){
     	$this->db->where($cond);
     	$this->db->limit($limit);
+        $this->_implementOrder($order);
     	$query = $this->db->get($this->table);
 
     	if(!$query->num_rows())
