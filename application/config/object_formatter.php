@@ -16,9 +16,10 @@ $config['object_formatter'] = array(
         'created' => 'date'
     ),
 
-    'category' => array(
+    'article_category' => array(
         'page' => 'join(/tag/|$slug)',
         'name' => 'text',
+        //'parent' => '@parent[article_category]',
         'description' => 'text',
         'created' => 'date'
     )

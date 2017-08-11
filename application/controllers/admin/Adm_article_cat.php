@@ -9,105 +9,53 @@ class Adm_article_cat extends MY_Controller {
 		$this->load->library('ObjectFormatter', '', 'formatter');
 	}
 
-	public function index(){
+	public function index($id){
         if(!$this->user)
 			return redirect('login');
 
+        $cat_edit = $this->ACategory->get($id);
+
 		$params = array(
-			'categories' => []
+			'categories' => [],
+            'title' => 'Category',
+            'id' => $id,
+            'cat_edit' => $cat_edit
 			);
 
-        
         $category = $this->ACategory->getAll();
         if($category)
-            $params['categories'] = $this->formatter->category($category);
+            $params['categories'] = $this->formatter->article_category($category);
+
+        if(!$id){
+            $params['btn_title'] = 'Save';
+        }else{
+            $params['btn_title'] = 'Update';
+        }
 		//deb($params);
 
 		$this->load->view('admin/article/category/index', $params);
-	}
-
-    public function edit($id){
-        if(!$this->user)
-			return redirect('login');
-
-		$params = array(
-			'article' => [],
-            'category' => array(),
-            'tags' => null,
-            'tag_in' => null,
-			'error' => ''
-			);
-
-		$article = $this->Article->get($id);
-        
-		$params['id'] = $id;
-		$params['article']= $article;
-        $params['category'] = $this->ACategory->getAll();
-        $params['tags'] = $this->ATag->getAll();
-
-        $tags = $this->ATag->getJoin(['article'=>$id]);
-        $tag_in = array();
-        foreach($tags as $tag){
-            $tag_in[$tag->article_tag] = $tag->article_tag;
-        }
-        $params['tag_in'] = $tag_in;
-
-		if(!$id){
-			$params['title'] = 'Create New';
-		}else{
-			$params['title'] = 'Edit Article';
-		}
-
-		//deb($params);
-		$this->load->view('admin/article/edit', $params);
 	}
 
     function save($id){
         if(!$this->user)
 			return $this->show_404();
 
-		$title = $this->input->post('title');
-		$slug = url_title($title, '-', true);
+		$name = $this->input->post('name');
+		$slug = url_title($name, '-', true);
 		$data = array(
-            'user' => $this->user->id,
-			'title' => $title,
+			'name' => $name,
 			'slug' => $slug,
-			'content' => $this->input->post('content'),
-			'cover' => $this->input->post('cover'),
-            'category' => $this->input->post('category'),
-            'status' => $this->input->post('status'),
-            'updated' => date('Y-m-d H:i:s')
+			'parent' => $this->input->post('parent'),
+			'description' => $this->input->post('description'),
+            'created' => date('Y-m-d H:i:s')
 			);
 
 		if(!$id){
-			$article_id = $this->Article->create($data);
-            $tag = $this->input->post('tag');
-            $hasil = array();
-            foreach ($tag as $key => $value) {
-                $hasil[] = array(
-                    'article_tag'=>$value,
-                    'article' => $article_id
-                    );
-            }
-            $this->ATChain->createBatch($hasil);
+			$this->ACategory->create($data);
 		}else{
-			$this->Article->setByCond(['id'=>$id], $data);
-            $this->ATChain->removeByCond(['article'=>$id]);
-            $tag = $this->input->post('tag');
-            $hasil = array();
-            if($tag){
-                foreach ($tag as $key => $value) {
-                    $hasil[] = array(
-                        'article_tag'=>$value,
-                        'article' => $id
-                        );
-                }
-                $this->ATChain->createBatch($hasil);
-            }
-                
-
+			$this->ACategory->setByCond(['id'=>$id], $data);
 		}
 
-		return redirect('admin/article');
+		return redirect('admin/article/category/0');
 	}
 }

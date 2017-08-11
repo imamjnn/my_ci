@@ -14,7 +14,7 @@
 					<a href="<?= base_url('admin/article') ?>">All Article</a>
 				</li>
 				<li>
-					<a href="<?= base_url('admin/article/category') ?>">Categories</a>
+					<a href="<?= base_url('admin/article/category/0') ?>">Categories</a>
 				</li>
 				<li>
 					<a href="#">Tags</a>

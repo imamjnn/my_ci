@@ -49,7 +49,7 @@
 								<select name="category" class="selectpicker" title="Category">
 									<?php if($category): ?>
 									<?php foreach($category as $cat): ?>
-									<option value="<?= $cat->id ?>" <?= $id ? ($cat->id != $article->category ? 'selected':'') : '' ?>><?= $cat->name ?></option>
+									<option value="<?= $cat->id ?>" <?= $id ? ($cat->id != $article->category ? '':'selected') : '' ?>><?= $cat->name ?></option>
 									<?php endforeach; ?>
 									<?php endif; ?>
 								</select>
